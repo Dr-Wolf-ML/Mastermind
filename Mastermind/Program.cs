@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            var mastermind = new MastermindGame();
+            var mastermind = new MasterMind();
 
             // starting game
             mastermind.Start();
