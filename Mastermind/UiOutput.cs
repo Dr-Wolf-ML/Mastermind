@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 namespace Mastermind
 {
-    public class Messages
+    public class UiOutput
     {
         // no constructor needed
 
-        public void NewGame()
+        public void ClearOutputScreen()
         {
             Console.Clear();
-            
+        }
+
+        public void NewGame()
+        {
+            ClearOutputScreen();
+
             Console.WriteLine("New game? y/n");
         }
 
@@ -53,11 +58,12 @@ namespace Mastermind
             Console.WriteLine("\n");
         }
 
-        public void ShowProgressivePlayerInput(List<int> playerPick, Dictionary<int, string> colourRange, int coloursToPick)
+        public void ShowProgressivePlayerInput(List<int> playerPick, Dictionary<int, string> colourRange,
+            int coloursToPick)
         {
             // write over the top of the same line...
-            Console.SetCursorPosition(0, Console.CursorTop -0);
-            
+            Console.SetCursorPosition(0, Console.CursorTop - 0);
+
             Console.Write("You picked: ");
 
             foreach (var pick in playerPick)
@@ -67,18 +73,18 @@ namespace Mastermind
 
             if (playerPick.Count == coloursToPick)
             {
-                Console.WriteLine("\n");   
+                Console.WriteLine("\n");
             }
         }
 
-        public void ShowResult(string matchStatus, Dictionary<string, int> colourMatch)
+        public void ShowResult(Enum matchStatus, Dictionary<string, int> colourMatch)
         {
             switch (matchStatus)
             {
-                case "win":
+                case MatchStatusOptions.Win:
                     Console.WriteLine("*** You Win ***\n");
                     break;
-                case "none":
+                case MatchStatusOptions.None:
                     Console.WriteLine("Your picked none...\n");
                     break;
                 default:
@@ -86,7 +92,7 @@ namespace Mastermind
                     break;
             }
         }
-        
+
         public void TryAgain()
         {
             Console.WriteLine("Would you like to try again? y/n\n");
